@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<routes>
+	<route url="/" module="CMS" action="showAccueil" />
+	<route url="/le-spa" module="CMS" action="showSpa" />
+	<route url="/les-services" module="CMS" action="showService" />
+	<route url="/produits" module="CMS" action="showProduit" />
+	<route url="/contact" module="CMS" action="showContact" />
+	<route url="/blog(\/?)" module="Blog" action="index" />
+	<route url="/connexion(\/?)" module="Connexion" action="index" />
+</routes>
