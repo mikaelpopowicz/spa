@@ -1,7 +1,7 @@
 <?php
 namespace Library\Entities;
 
-class Article \Library\Entity
+class Article extends \Library\Entity
 {
 	protected $categorie,
 	$titre,
@@ -9,7 +9,7 @@ class Article \Library\Entity
 	$contenu;
 	
 	const TITRE_INVALIDE = 1;
-	const DESC_INVALIDE = 2
+	const DESC_INVALIDE = 2;
 	const CONTENU_INVALIDE = 3;
 	
 	public function isValid()
