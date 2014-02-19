@@ -6,7 +6,8 @@ class Article extends \Library\Entity
 	protected $categorie,
 	$titre,
 	$description,
-	$contenu;
+	$contenu,
+	$dateArticle;
 	
 	const TITRE_INVALIDE = 1;
 	const DESC_INVALIDE = 2;
@@ -59,6 +60,11 @@ class Article extends \Library\Entity
 			$this->contenu = $contenu;
 		}
 	}
+
+	public function setDateArticle(\DateTime $date)
+	{
+		$this->dateArticle = $date;
+	}
 	
 	// GETTERS //
 	
@@ -66,5 +72,6 @@ class Article extends \Library\Entity
 	public function titre() { return $this->titre; }
 	public function description() { return $this->description; }
 	public function contenu() { return $this->contenu; }
+	public function dateArticle() { return $this->dateArticle; }
 }
 ?>

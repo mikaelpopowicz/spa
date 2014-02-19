@@ -84,7 +84,8 @@ CREATE TABLE IF NOT EXISTS article
 	id_cat INTEGER NOT NULL  ,
 	titre VARCHAR(512) NOT NULL  ,
 	description VARCHAR(1024) NULL ,
-	contenu TEXT NULL 
+	contenu TEXT NULL ,
+	dateArticle DATETIME  
 	, PRIMARY KEY (id_article)
  );
 

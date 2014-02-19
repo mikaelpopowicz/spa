@@ -62,7 +62,7 @@ abstract class ArticleManager extends \Library\Manager
 		}
 		else
 		{
-			throw new \RuntimeException('Le cours doit être validée pour être enregistrée');
+			throw new \RuntimeException('L\article doit être validée pour être enregistrée');
 		}
 	}
 }

@@ -7,204 +7,93 @@ class ArticleManager_PDO extends ArticleManager
 {
 	public function getList()
 	{
-		$sql = 'SELECT c.id_c as id, b.username AS auteur, c.id_m AS matiere, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-			INNER JOIN byte b ON c.id_u = b.id_u
-			ORDER BY id_c DESC';
+		$sql = 'SELECT id_article as id, id_cat AS categorie, c.id_m AS matiere, titre, description, contenu, dateArticle FROM article';
      
 		$requete = $this->dao->query($sql);
-		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
+		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Article');
      
-		$listeCours = $requete->fetchAll();
+		$listeArticles = $requete->fetchAll();
      
-		foreach ($listeCours as $cours)
+		foreach ($listeArticles as $article)
 		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
+			$article->setDateArticle(new \DateTime($cours->dateArticle()));
 		}
      
 		$requete->closeCursor();
      
-		return $listeCours;
+		return $listeArticles;
 	}
-
-	public function getListByAuthor($byte)
+	
+	public function getListOf($categorie)
 	{
-		$requete = $this->dao->prepare('SELECT c.id_c AS id, b.username AS auteur, m.libelle as matiere, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-			INNER JOIN byte b ON c.id_u = b.id_u
-			INNER JOIN matiere m ON c.id_m = m.id_m
-			WHERE b.id_u = :id_u
-			ORDER BY dateAjout DESC');
-		$requete->bindValue(':id_u', $byte);
+		$requete = $this->dao->prepare('SELECT id_article as id, id_cat AS categorie, c.id_m AS matiere, titre, description, contenu, dateArticle FROM article FROM cours WHERE id_cat = :categorie');
+		$requete->bindValue(':categorie', $categorie, \PDO::PARAM_STR);
 		$requete->execute();
 		
 		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
      
-		$listeCours = $requete->fetchAll();
+		$listeArticles = $requete->fetchAll();
      
-		foreach ($listeCours as $cours)
+		foreach ($listeArticles as $article)
 		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
+			$article->setDateArticle(new \DateTime($cours->dateArticle()));
 		}
      
 		$requete->closeCursor();
      
-		return $listeCours;
-	}
-	
-	public function getListOf($matiere)
-	{
-		$requete = $this->dao->prepare('SELECT c.id_c AS id, b.username AS auteur, c.id_m as matiere, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-			INNER JOIN byte b ON c.id_u = b.id_u
-			INNER JOIN matiere m ON c.id_m = m.id_m
-			WHERE m.libelle = :libelle
-			ORDER BY dateAjout DESC');
-		$requete->bindValue(':libelle', $matiere, \PDO::PARAM_STR);
-		$requete->execute();
-		
-		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
-     
-		$listeCours = $requete->fetchAll();
-     
-		foreach ($listeCours as $cours)
-		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
-		}
-     
-		$requete->closeCursor();
-     
-		return $listeCours;
-	}
-	
-	public function getLast() {
-		$requete = $this->dao->prepare('SELECT c.id_c AS id, c.id_m AS matiere, b.username AS auteur, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-		 	INNER JOIN byte b ON c.id_u = b.id_u
-			INNER JOIN matiere m ON c.id_m = m.id_m
-			ORDER BY dateModif DESC
-			LIMIT 5');
-			
-		$requete->execute();
-	
-		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
- 
-		$listeCours = $requete->fetchAll();
- 
-		foreach ($listeCours as $cours)
-		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
-		}
- 
-		$requete->closeCursor();
- 
-		return $listeCours;
-	}
-	
-	public function getPopular() {
-		$requete = $this->dao->prepare('SELECT c.id_c AS id, c.id_m AS matiere, b.username AS auteur, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-		 	INNER JOIN byte b ON c.id_u = b.id_u
-			INNER JOIN matiere m ON c.id_m = m.id_m
-			ORDER BY count_c DESC
-			LIMIT 5');
-			
-		$requete->execute();
-	
-		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
- 
-		$listeCours = $requete->fetchAll();
- 
-		foreach ($listeCours as $cours)
-		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
-		}
- 
-		$requete->closeCursor();
- 
-		return $listeCours;
+		return $listeArticles;
 	}
 	
 	public function getUnique($id)
 	{
-		$requete = $this->dao->prepare('SELECT c.id_c AS id, c.id_m AS matiere, b.username AS auteur, c.titre, c.description, c.contenu, c.dateAjout, c.dateModif, c.count_c
-			FROM cours c
-		 	INNER JOIN byte b ON c.id_u = b.id_u
-			INNER JOIN matiere m ON c.id_m = m.id_m
-			WHERE c.id_c = :id');
+		$requete = $this->dao->prepare('SELECT id_article as id, id_cat AS categorie, c.id_m AS matiere, titre, description, contenu, dateArticle FROM article FROM cours WHERE id_article = :id');
 		$requete->bindValue(':id', $id, \PDO::PARAM_INT);
 		$requete->execute();
      
 		$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Cours');
      
-		if ($cours = $requete->fetch())
+		if ($article = $requete->fetch())
 		{
-			$cours->setDateAjout(new \DateTime($cours->dateAjout()));
-			$cours->setDateModif(new \DateTime($cours->dateModif()));
+			$article->setDateArticle(new \DateTime($cours->dateArticle()));
        
-			return $cours;
+			return $article;
 		}
      
 		return null;
 	}
 	
-	public function setCount($id) {
-		$requete = $this->dao->prepare('UPDATE cours
-			SET count_c = count_c + 1
-			WHERE id_c = :id');
-			
-		$requete->bindValue(':id', $id, \PDO::PARAM_INT);
-		$requete->execute();
-	}
-	
-	public function getCount($id) {
-		$requete = $this->dao->prepare('SELECT count_c
-			FROM cours
-			WHERE id_c = :id');
-			
-		$requete->bindValue(':id', $id, \PDO::PARAM_INT);
-		$requete->execute();
-		$result = $requete->fetch();
-		return $result;
-	}
-	
 	public function count()
 	{
-		return $this->dao->query('SELECT COUNT(*) FROM cours')->fetchColumn();
+		return $this->dao->query('SELECT COUNT(*) FROM article')->fetchColumn();
 	}
 	
-	protected function add(Cours $cours)
+	protected function add(Article $article)
 	{
-		$requete = $this->dao->prepare('INSERT INTO cours SET id_u = :auteur, id_m = :matiere, titre = :titre, description = :description, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
+		$requete = $this->dao->prepare('INSERT INTO article SET id_cat = :categorie, titre = :titre, description = :description, contenu = :contenu, dateArticle = SYSDATE() WHERE id_article = :id');
 		
-	    $requete->bindValue(':auteur', $cours->auteur());
-		$requete->bindValue(':matiere', $cours->matiere());
-	    $requete->bindValue(':titre', $cours->titre());
-		$requete->bindValue(':description', $cours->description());
-	    $requete->bindValue(':contenu', $cours->contenu());
+	    $requete->bindValue(':auteur', $article->auteur());
+		$requete->bindValue(':matiere', $article->matiere());
+	    $requete->bindValue(':titre', $article->titre());
+		$requete->bindValue(':description', $article->description());
+	    $requete->bindValue(':contenu', $article->contenu());
  
 	    $requete->execute();
 	}
 	
-	protected function modify(Cours $cours)
+	protected function modify(Article $article)
 	{
-	    $requete = $this->dao->prepare('UPDATE cours SET id_m = :matiere, titre = :titre, description = :description, contenu = :contenu, dateModif = NOW() WHERE id_c = :id');
-	    $requete->bindValue(':matiere', $cours['matiere']);
-		$requete->bindValue(':titre', $cours['titre']);
-		$requete->bindValue(':description', $cours['description']);
-		$requete->bindValue(':contenu', $cours['contenu']);
-		$requete->bindValue(':id', $cours['id']);
+	    $requete = $this->dao->prepare('UPDATE article SET id_cat = :categorie, titre = :titre, description = :description, contenu = :contenu WHERE id_article = :id');
+	    $requete->bindValue(':categorie', $article['categorie']);
+		$requete->bindValue(':titre', $article['titre']);
+		$requete->bindValue(':description', $article['description']);
+		$requete->bindValue(':contenu', $article['contenu']);
+		$requete->bindValue(':id', $article['id']);
 	    $requete->execute();
 	}
 	
-  	public function delete(Cours $cours)
+  	public function delete(Article $article)
   	{
-  		$this->dao->exec('DELETE FROM cours WHERE id_c = '.$cours['id']);
+  		$this->dao->exec('DELETE FROM article WHERE id_c = '.$article['id']);
   	}
 	  
 	  
