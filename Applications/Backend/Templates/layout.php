@@ -61,39 +61,23 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/admin">myLearn | Admin</a>
+					<a class="navbar-brand" href="/admin">Spa | Admin</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="<?php echo $class_accueil;?>"><a href="/admin">Tableau de bord</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle <?php echo $class_cours;?>" data-toggle="dropdown">Gestion <b class="caret"></b></a>
+						<li class="<?php echo $class_cms;?>"><a href="/admin/cms">CMS</a></li>
+						<li class="dropdown <?php echo $class_blog;?>">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion du blog <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/admin/section">Section</a></li>
-								<li><a href="/admin/session">Session</a></li>
-								<li><a href="/admin/classe">Classe</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle <?php echo $class_cours;?>" data-toggle="dropdown">Cours <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/admin/matiere">Matières</a></li>
-								<li><a href="/admin/cours">Cours</a></li>
-								<li><a href="/admin/devoirs">Devoirs</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/admin/administrateur">Administrateurs</a></li>
-								<li><a href="/admin/professeurs">Professeurs</a></li>
-								<li><a href="/admin/eleves">Elèves</a></li>
+								<li><a href="/admin/blog/categories">Catégories</a></li>
+								<li><a href="/admin/blog/articles">Articles</a></li>
+								<li><a href="/admin/blog/commentaires">Commentaires</a></li>
 							</ul>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class=""><a href="/admin/parametres">Paramètres</a></li>
-						<li class=""><a href="/connexion/logout//">Déconnexion</a></li>
+						<li class="<?php echo $class_param;?>"><a href="/admin/parametres">Paramètres</a></li>
+						<li class=""><a href="/admin/logout">Déconnexion</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

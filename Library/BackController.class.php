@@ -19,14 +19,14 @@ abstract class BackController extends ApplicationComponent
 		$this->page->addVar("includes", array());
 		if($app->name() == "Frontend") {
 			$this->page->addVar("class_accueil", "");
-			$this->page->addVar("class_cours", "");
-			$this->page->addVar("class_tutos", "");
+			$this->page->addVar("class_spa", "");
+			$this->page->addVar("class_service", "");
+			$this->page->addVar("class_produit", "");
 			$this->page->addVar("class_contact", "");
+			$this->page->addVar("class_blog", "");
 		} else if ($app->name() == "Backend") {
-			$this->page->addVar("class_accueil", "");
-			$this->page->addVar("class_cours", "");
-			$this->page->addVar("class_user", "");
-			$this->page->addVar("class_comments", "");
+			$this->page->addVar("class_cms", "");
+			$this->page->addVar("class_blog", "");
 		}
 		
      

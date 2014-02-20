@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <definitions>
-	<define var="login" value="miko" />
-	<define var="pass" value="bbc1a65d97d8cbfc719d7e3a28ba8df244f60123" />
+	<define var="login" value="90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad" />
+	<define var="salt" value="cb0760a89155d614f018c5f4dcecf7a4968bf321" />
+	<define var="pass" value="29ca87a82769ce848cfdfbc92e677592b03c011f" />
 </definitions>

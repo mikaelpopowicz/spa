@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="<?php echo isset($desc) ? $desc : "";?>">
+	<meta name="author" content="CPM-WEB">
 	<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
 	<title>
@@ -18,10 +18,7 @@
 	<link href="/css/bootstrap.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link href="/css/doc.css" rel="stylesheet">
-	<link href="/css/navbar.css" rel="stylesheet">
-	<link href="/assets/css/datatables.css" rel="stylesheet">
-	<link href="/assets/css/font-awesome.css" rel="stylesheet">
+	<link href="/css/signin.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
 	<script>
@@ -120,10 +117,6 @@
 	<script src="/js/jquery.uniform.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/holder.js"></script>
-	<!-- Noty ================ -->
-	<script src='/assets/js/noty/packaged/jquery.noty.packaged.min.js'></script>
-	<script src='/assets/js/jquery.dataTables.js'></script>
-	<script src='/assets/js/datatables.js'></script>
 	<script src='/js/custom.js'></script>
 	
 	<!--=== JavaScript insert code ===-->

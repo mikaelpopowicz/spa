@@ -187,3 +187,13 @@ ALTER TABLE news_pub
 ALTER TABLE news_pub
   ADD FOREIGN KEY FK_news_pub_new_list (id_mailing)
       REFERENCES news_list (id_mailing) ;
+
+# -----------------------------------------------------------------------------
+#       INSERTION DES DONNEES
+# -----------------------------------------------------------------------------
+
+INSERT INTO cms VALUES("accueil", "", "Accueil", "Le Reuilly spa vous accueille"),
+("spa", "", "Le Spa", "L'histoire du Reuilly spa"),
+("services", "", "Les services", "Les services que nous proposons"),
+("produits", "", "Les produits", "Les produits que nous proposons"),
+("contact", "", "Nous contacter", "Retrouvez toutes les informations pour nous contacter");

@@ -11,23 +11,21 @@ class ConnexionController extends \Library\BackController
 		if ($request->postExists('login'))
 		{
 			$login = $request->postData('login');
+			$login = sha1(md5($login));
 			
-			$test = $this->managers->getManagerOf('Byte')->getUnique(42);
+			$salt = $this->app->config()->get('salt');
 			
 			$password = $request->postData('password');
-			$password = sha1(md5(sha1(md5($test['salt'])).sha1(md5($password)).sha1(md5($test['salt']))));
+			$password = sha1(md5(sha1(md5($salt)).sha1(md5($password)).sha1(md5($salt))));
        
 			if ($login == $this->app->config()->get('login') && $password == $this->app->config()->get('pass'))
 			{
 				$this->app->user()->setAuthenticated(true);
-				$this->app->user()->setAttribute('username', $match['username']);
-				$this->app->user()->setAttribute('email', $match['email']);
-				$this->app->user()->setAttribute('id', $match['id']);
 				$this->app->httpResponse()->redirect('/admin');
 			}
 			else
 			{
-				$this->page->addVar('erreurs', '<h4 class="text-danger text-center">LOOSER U suck ! Try again</h3>');
+				$this->page->addVar('erreurs', '<h4 class="text-danger text-center">Erreur de login ou de mot de passe</h3>');
 			}
 		}
 	}
