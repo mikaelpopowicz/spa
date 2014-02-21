@@ -65,7 +65,27 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="<?php echo $class_cms;?>"><a href="/admin/cms">CMS</a></li>
+						<li class="dropdown <?php echo $class_cms;?>">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">CMS <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/cms">Pages</a></li>
+								<li><a href="/admin/cms/liens">Liens</a></li>
+							</ul>
+						</li>
+						<li class="dropdown <?php echo $class_membre;?>">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Membres <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/membres">Membres</a></li>
+								<li><a href="/admin/membres/articles">Inscris newsletter</a></li>
+							</ul>
+						</li>
+						<li class="dropdown <?php echo $class_membre;?>">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">NewsLetter <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/newsletter/pro">Pour membre</a></li>
+								<li><a href="/admin/newsletter/simple">Simple</a></li>
+							</ul>
+						</li>
 						<li class="dropdown <?php echo $class_blog;?>">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion du blog <b class="caret"></b></a>
 							<ul class="dropdown-menu">
