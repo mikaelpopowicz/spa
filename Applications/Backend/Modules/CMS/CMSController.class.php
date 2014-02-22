@@ -8,4 +8,11 @@ class CMSController extends \Library\BackController
 		$this->page->addVar('title', 'Spa - CMS');
 		$this->page->addVar('class_cms', 'active');
 	}
+
+	public function executeLink(\Library\HTTPRequest $request)
+	{
+		$this->page->addVar('title', 'Spa - Liens');
+		$this->page->addVar('class_cms', 'active');
+	}
 }
+?>

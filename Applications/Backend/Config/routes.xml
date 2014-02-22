@@ -2,13 +2,13 @@
 <routes>
 	<route url="/admin(/?)" module="Dashboard" action="index" />
 	<route url="/admin/parametres" module="Dashboard" action="showParam" />
-	<route url="/admin/cours(/?)" module="Cours" action="index" />
-	<route url="/admin/logout" module="Connexion" action="logout" />
-	<route url="/admin/cours/supprimer" module="Cours" action="delete" />
-	<route url="/admin/cours/ajouter" module="Cours" action="add" />
-	<route url="/admin/cours/modifier-([0-9]+)" module="Cours" action="update" vars="id"/>
-	<route url="/admin/cms(/?)" module="CMS" action="index" />
+	<route url="/admin/cms/pages" module="CMS" action="index" />
+	<route url="/admin/cms/liens" module="CMS" action="link" />
+	<route url="/admin/membres(/?)" module="Membre" action="index" />
+	<route url="/admin/newsletter/pro" module="NewsPro" action="index" />
+	<route url="/admin/newsletter/simple" module="NewsSim" action="index" />
 	<route url="/admin/blog/categories" module="Blog" action="categorie" />
 	<route url="/admin/blog/articles" module="Blog" action="article" />
 	<route url="/admin/blog/commentaires" module="Blog" action="commentaire" />
+	<route url="/admin/logout" module="Connexion" action="logout" />
 </routes>

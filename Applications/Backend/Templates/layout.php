@@ -68,7 +68,7 @@
 						<li class="dropdown <?php echo $class_cms;?>">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">CMS <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/admin/cms">Pages</a></li>
+								<li><a href="/admin/cms/pages">Pages</a></li>
 								<li><a href="/admin/cms/liens">Liens</a></li>
 							</ul>
 						</li>
@@ -76,7 +76,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Membres <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="/admin/membres">Membres</a></li>
-								<li><a href="/admin/membres/articles">Inscris newsletter</a></li>
+								<li><a href="/admin/newlist">Inscris newsletter</a></li>
 							</ul>
 						</li>
 						<li class="dropdown <?php echo $class_membre;?>">
